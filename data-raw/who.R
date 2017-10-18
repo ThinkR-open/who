@@ -37,6 +37,25 @@ h <- bind_rows(
 hc <- bind_rows(
   parse_who( "http://www.who.int/childgrowth/standards/second_set/hcfa_girls_p_exp.txt", "F", head_circumference ),
   parse_who( "http://www.who.int/childgrowth/standards/second_set/hcfa_boys_p_exp.txt", "M", head_circumference )
-) %>% rename( Age = Day)
+)
+
+ac <- bind_rows(
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/acfa_girls_p_exp.txt", "F", arm_circumference ),
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/acfa_boys_p_exp.txt", "M", arm_circumference )
+)
+
+ss <- bind_rows(
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/ssfa_girls_p_exp.txt", "F", subscapular_skinfold ),
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/ssfa_boys_p_exp.txt", "M", subscapular_skinfold )
+)
+
+ts <- bind_rows(
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/tsfa_girls_p_exp.txt", "F", triceps_skinfold ),
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/tsfa_boys_p_exp.txt", "M", triceps_skinfold )
+)
+
+datasets <- list(w,h,hc,ac,ss,ts)
+who <- reduce(datasets, full_join, by = c("Age", "percentile", "sex")) %>%
+  select( Age, sex, percentile, everything() )
 
 
