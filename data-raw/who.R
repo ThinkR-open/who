@@ -34,4 +34,9 @@ h <- bind_rows(
   parse_who( "http://www.who.int/childgrowth/standards/lhfa_boys_p_exp.txt", "M", height )
 ) %>% rename( Age = Day)
 
+hc <- bind_rows(
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/hcfa_girls_p_exp.txt", "F", head_circumference ),
+  parse_who( "http://www.who.int/childgrowth/standards/second_set/hcfa_boys_p_exp.txt", "M", head_circumference )
+) %>% rename( Age = Day)
+
 
