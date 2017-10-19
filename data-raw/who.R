@@ -1,5 +1,5 @@
 library(tidyverse)
-library(glue)
+library(rlang)
 
 # bc who column names are weird
 parse_percentile <- function(x){
@@ -55,7 +55,8 @@ ts <- bind_rows(
 )
 
 datasets <- list(w,h,hc,ac,ss,ts)
-who <- reduce(datasets, full_join, by = c("Age", "percentile", "sex")) %>%
+standards <- reduce(datasets, full_join, by = c("Age", "percentile", "sex")) %>%
   select( Age, sex, percentile, everything() )
 
+use_data( standards, overwrite = TRUE )
 

@@ -1,0 +1,32 @@
+---
+output: github_document
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+library(tibble)
+
+```
+
+# who
+
+Data from the World Health Organisation
+
+## Installation
+
+You can install who from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("ThinkR-open/who")
+```
+
+## Example
+
+```{r example}
+glimpse( who::standards )
+```
